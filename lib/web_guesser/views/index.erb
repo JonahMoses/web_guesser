@@ -1,17 +1,19 @@
 <html>
   <head>
     <style>
-      body {
-        background: red;
-      }
+      .too_low{ background: orange;}
+      .way_too_low{ background: red;}
+      .too_high{ background: orange;}
+      .way_too_high{ background: red;}
+      .correct{ background: green;}
     </style>
   </head>
-  <body>
+  <body class=<%= output_style %>>
     <h1>Welcome To WebGuesser</h1>
 
     <p>
       The secret number is
-      <% if params[:cheat] == "true" || true %>
+      <% if params[:cheat] == "true" %>
       <%= secret_number %>
       <% end %><br>
       You have <%= guesses_left %> remaining guesses.
@@ -20,12 +22,14 @@
     <% if params[:guess] %>
       <p>
         You guessed <%= guess %>. <br>
+      </p>
+      <p>
         That answer is <%= message %> <br>
       </p>
     <% end %>
 
     <form>
-      <input type='text' name='guess' autofocus />
+      <input type='text' name='guess' autofocus autocomplete='off'/>
       <input type='submit' value='Guess A Number!' />
     </form>
 
