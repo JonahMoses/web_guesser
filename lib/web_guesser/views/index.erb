@@ -1,18 +1,33 @@
 <html>
-  <head></head>
+  <head>
+    <style>
+      body {
+        background: red;
+      }
+    </style>
+  </head>
   <body>
     <h1>Welcome To WebGuesser</h1>
 
     <p>
-      The secret number is <%= secret_number %>
+      The secret number is
+      <% if params[:cheat] == "true" || true %>
+      <%= secret_number %>
+      <% end %><br>
+      You have <%= guesses_left %> remaining guesses.
     </p>
+
+    <% if params[:guess] %>
+      <p>
+        You guessed <%= guess %>. <br>
+        That answer is <%= message %> <br>
+      </p>
+    <% end %>
+
     <form>
-      <input type='text' name='guess' />
+      <input type='text' name='guess' autofocus />
       <input type='submit' value='Guess A Number!' />
     </form>
-    <p>
-      You guessed <%= guess %>. <br>
-      That answer is <%= message %>
-    </p>
+
   </body>
 </html>
